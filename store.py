@@ -27,7 +27,12 @@ class Store:
         return username
 
     def get_total_asset(self):
-        pass
+        totalAsset = 0
+        for i in self.products:
+            totalAsset += i.price * self.products[i]
+        
+        return totalAsset
+            
 
     def get_total_profit(self):
         pass
