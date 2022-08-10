@@ -3,15 +3,20 @@ from models import Product, User
 
 class Store:
     def __init__(self):
-        self.products = dict()
-        self.users = list()
+        self.products: Product = dict()
+        self.users: User = list()
 
     def add_product(self, product, amount=1):
         self.products[product] = self.products.get(product, 0) + amount
 
     def remove_product(self, product, amount=1):
-        pass
-
+        try:
+            self.products[product] = self.products[product] - amount
+            if (self.products[product] <= 0):
+                del self.products[product]
+        except:
+            raise Exception("Not Enough Products")
+    
     def add_user(self, username):
         countOfUsername = self.users.count(username)
         if (countOfUsername != 0):
