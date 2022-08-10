@@ -1,3 +1,4 @@
+import datetime
 from models import Product, User
 
 
@@ -52,8 +53,10 @@ class Store:
     def get_inflation_affected_product_names(self):
         pass
 
-    def clean_old_comments(self, date):
-        pass
+    def clean_old_comments(self, date: datetime):
+        for i in self.products.comments:
+            if(i.date_added < date):
+                del self.products.comments[i]
 
     def get_comments_by_bought_users(self, product):
         pass
