@@ -35,7 +35,11 @@ class Store:
             
 
     def get_total_profit(self):
-        pass
+        totalProfit = 0
+        for i in self.users.bought_products:
+            totalProfit += i.price
+        
+        return totalProfit
 
     def get_comments_by_user(self, user):
         pass
