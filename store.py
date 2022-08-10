@@ -42,7 +42,12 @@ class Store:
         return totalProfit
 
     def get_comments_by_user(self, user):
-        pass
+        userComments = []
+        for i in self.products.comments:
+            if (i.user == user):
+                userComments.append(i.text)
+        
+        return userComments
 
     def get_inflation_affected_product_names(self):
         pass
