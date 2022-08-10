@@ -1,11 +1,12 @@
 import datetime
+from unicodedata import name
 from models import Product, User
 
 
 class Store:
     def __init__(self):
-        self.products: Product = dict()
-        self.users: User = list()
+        self.products = dict()
+        self.users = list()
 
     def add_product(self, product, amount=1):
         self.products[product] = self.products.get(product, 0) + amount
@@ -20,11 +21,12 @@ class Store:
     
     def add_user(self, username):
         countOfUsername = self.users.count(username)
+        print("**********", countOfUsername, "*************")
         if (countOfUsername != 0):
             return None
         
         self.users.append(User(username))
-        
+
         return username
 
     def get_total_asset(self):
@@ -33,7 +35,6 @@ class Store:
             totalAsset += i.price * self.products[i]
         
         return totalAsset
-            
 
     def get_total_profit(self):
         totalProfit = 0
@@ -51,7 +52,19 @@ class Store:
         return userComments
 
     def get_inflation_affected_product_names(self):
-        pass
+        products = self.products.keys()
+
+        nameOfProducts = []
+        for i in products:
+            nameOfProducts.append(i.name)
+
+        affectedProductNames = []
+        for i in nameOfProducts:
+            if (nameOfProducts.count(i) > 1):
+                affectedProductNames.append(i)
+        
+        return affectedProductNames
+
 
     def clean_old_comments(self, date: datetime):
         for i in self.products.comments:

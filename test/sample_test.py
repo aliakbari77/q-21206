@@ -1,7 +1,7 @@
 import unittest
 from datetime import datetime
 import sys
-sys.path.append('../Initial_project')
+sys.path.append('../21206')
 from models import User, Product, Comment
 from store import Store
 
