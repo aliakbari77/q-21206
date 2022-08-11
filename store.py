@@ -11,13 +11,13 @@ class Store:
     def add_product(self, product, amount=1):
         self.products[product] = self.products.get(product, 0) + amount
 
-    def remove_product(self, product, amount=1):
-        try:
+    def remove_product(self, product, amount=1):        
             self.products[product] = self.products[product] - amount
-            if (self.products[product] <= 0):
+            if (self.products[product] == 0):
                 del self.products[product]
-        except:
-            raise Exception("Not Enough Products")
+            elif (self.products[product] < 0):
+                raise Exception("Not Enough Products")
+
     
     def add_user(self, username):
         usernames = []
@@ -66,7 +66,6 @@ class Store:
             if (nameOfProducts.count(i) > 1 and affectedProductNames.count(i) == 0):
                 affectedProductNames.append(i)
         
-        print(affectedProductNames)
         return affectedProductNames
 
 
