@@ -20,9 +20,12 @@ class Store:
             raise Exception("Not Enough Products")
     
     def add_user(self, username):
-        countOfUsername = self.users.count(username)
-        print("**********", countOfUsername, "*************")
-        if (countOfUsername != 0):
+        usernames = []
+        for i in self.users:
+            usernames.append(i.username)
+        
+        countOfUsername = usernames.count(username)
+        if (countOfUsername >= 1):
             return None
         
         self.users.append(User(username))
