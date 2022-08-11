@@ -63,9 +63,10 @@ class Store:
 
         affectedProductNames = []
         for i in nameOfProducts:
-            if (nameOfProducts.count(i) > 1):
+            if (nameOfProducts.count(i) > 1 and affectedProductNames.count(i) == 0):
                 affectedProductNames.append(i)
         
+        print(affectedProductNames)
         return affectedProductNames
 
 
